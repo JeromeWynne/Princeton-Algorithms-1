@@ -1,0 +1,24 @@
+Read sections 1.1 and 1.2 in Algorithms 4th ed.
+
+Do not use libraries unitl they're introduced in lectures.
+
+Bold comment at the beginning of each file:
+    - Name
+    - Date
+    - Program purpose
+    - How to execute the program
+
+Comment each instance variable
+
+No more than 80 chars per line
+
+Assignment goals:
+    - Set up Java IDE
+    - Use Sedgewick's i/o libraries
+    - Learn about a scientific application of union-find
+    - Measure the running time of a program
+        + use the doubling hypothesis to make predictions.
+    - Measure the amount of memory used by a data structure
+
+Reference solution Percolation.java is 70 lines plus test client.
+PercolationStats.java is about 50 lines.
