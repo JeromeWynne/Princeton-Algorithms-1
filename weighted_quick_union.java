@@ -3,7 +3,7 @@ public class WeightedQuickUnionUF
     private int id[];
     private int sz[]; // Tree size
 
-    public QuickUnionUF(int N){
+    public WeightedQuickUnionUF(int N){
         for (i = 0; i<N; i++){
             id[i] = i;
             sz[i] = 1;
