@@ -7,7 +7,7 @@ public class Percolation {
     
     public Percolation(int n) {
        if (n <= 0) throw new IllegalArgumentException();
-       nConn = (int) Math.pow(n, 2) + 2;
+       nConn = (int) Math.pow(n, 2) + 1;
        connectivity = new WeightedQuickUnionUF(nConn);
        nodes = new boolean[n][n];
        for (int i = 0; i < nodes.length; i++) {
@@ -35,8 +35,7 @@ public class Percolation {
         if (nodes[rowBelow][col])   connectivity.union(p, ix2conn(rowBelow, col));
         if (nodes[row][colRight])   connectivity.union(p, ix2conn(row, colRight));
         if (nodes[row][colLeft])    connectivity.union(p, ix2conn(row, colLeft));
-        if (row == 0)                connectivity.union(0, p);
-        if (row + 1 == nodes.length && isFull(row + 1, col + 1)) connectivity.union(nConn - 1, p);
+        if (row == 0)               connectivity.union(0, p);
     }
 
     public boolean isOpen(int row, int col) {
@@ -65,7 +64,10 @@ public class Percolation {
     }
     
     public boolean percolates() {
-        return connectivity.connected(0, nConn - 1);
+        for (int i = 0; i < nodes.length; i++) {
+            if (connectivity.connected(0, nConn - i - 1)) return true;
+        }
+        return false;
     }
      
     public static void main(String[] args) {
