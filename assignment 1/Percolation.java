@@ -41,7 +41,7 @@ public class Percolation {
             }
         }
         if (row == 0) connectivity.union(0, p);
-        if (row == nodes.length - 1) connectivity.union(n_conn - 1, p);
+        if (row == nodes.length - 1 && isFull(row + 1, col +1)) connectivity.union(n_conn - 1, p);
     }
 
     public boolean isOpen(int row, int col){
@@ -79,7 +79,7 @@ public class Percolation {
         for (int i = 0; i < nodes.length; i++){
             for (int j = 0; j < nodes.length; j++){
                 if (isFull(i + 1, j + 1)){
-                    StdDraw.setPenColor(StdDraw.BLUE);
+                    StdDraw.setPenColor(StdDraw.ORANGE);
                     StdDraw.filledRectangle(j, nodes.length - i - 1, 0.49, 0.49);
                 }
                 else if (nodes[i][j]){
@@ -92,10 +92,10 @@ public class Percolation {
      
     public static void main(String[] args) // optional test client
     {
-     Percolation percolation = new Percolation(20);
+     Percolation percolation = new Percolation(50);
      
      Random rng = new Random();
-     int n_open = 100;
+     int n_open = 2200;
      for (int i = 0; i < n_open; i++){
          percolation.open(rng.nextInt(percolation.nodes.length)+1,
                           rng.nextInt(percolation.nodes.length)+1);
