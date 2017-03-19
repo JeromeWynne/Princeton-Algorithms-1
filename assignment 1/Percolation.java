@@ -27,16 +27,16 @@ public class Percolation {
         col -= 1;
         int p = ix2conn(row, col);
         nodes[row][col] = true;
-        int row_above = Math.max(row - 1, 0);
-        int row_below = Math.min(row + 1, nodes.length - 1);
-        int col_right = Math.min(col + 1, nodes.length - 1);
-        int col_left  = Math.max(col - 1, 0);
-        if (nodes[row_above][col])   connectivity.union(p, ix2conn(row_above, col));
-        if (nodes[row_below][col])   connectivity.union(p, ix2conn(row_below, col));
-        if (nodes[row][col_right])   connectivity.union(p, ix2conn(row, col_right));
-        if (nodes[row][col_left])    connectivity.union(p, ix2conn(row, col_left));
+        int rowAbove = Math.max(row - 1, 0);
+        int rowBelow = Math.min(row + 1, nodes.length - 1);
+        int colRight = Math.min(col + 1, nodes.length - 1);
+        int colLeft  = Math.max(col - 1, 0);
+        if (nodes[rowAbove][col])   connectivity.union(p, ix2conn(rowAbove, col));
+        if (nodes[rowBelow][col])   connectivity.union(p, ix2conn(rowBelow, col));
+        if (nodes[row][colRight])   connectivity.union(p, ix2conn(row, colRight));
+        if (nodes[row][colLeft])    connectivity.union(p, ix2conn(row, colLeft));
         if (row == 0)                connectivity.union(0, p);
-        if (row + 1 == nodes.length) connectivity.union(nConn - 1, p);
+        if (row + 1 == nodes.length && isFull(row + 1, col + 1)) connectivity.union(nConn - 1, p);
     }
 
     public boolean isOpen(int row, int col) {
